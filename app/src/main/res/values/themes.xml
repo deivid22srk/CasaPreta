@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme (Light). Dark mode is handled by Jetpack Compose Material3 dynamic theme. -->
+    <style name="Theme.CasaPreta" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor" tools:targetApi="l">@color/purple_700</item>
+    </style>
+</resources>

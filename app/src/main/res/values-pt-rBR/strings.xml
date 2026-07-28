@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CasaPreta</string>
+    <string name="settings">Configurações</string>
+    <string name="home">Início</string>
+    <string name="dark_mode">Modo Noturno</string>
+    <string name="dark_mode_summary">Ativar tema escuro no aplicativo</string>
+    <string name="theme_system">Sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="app_list">Aplicativos</string>
+    <string name="about">Sobre</string>
+    <string name="version_label">Versão</string>
+    <string name="appearance">Aparência</string>
+    <string name="general">Geral</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+</resources>
