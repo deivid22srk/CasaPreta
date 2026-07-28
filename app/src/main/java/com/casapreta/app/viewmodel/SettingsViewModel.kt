@@ -29,7 +29,7 @@ class SettingsViewModel(app: Application) : AndroidViewModel(app) {
 
     private val shizuku = ShizukuManager()
 
-    private val _shizukuStatus = MutableStateFlow(ShizukuManager.Status.NotRunning)
+    private val _shizukuStatus = MutableStateFlow<ShizukuManager.Status>(ShizukuManager.Status.NotRunning)
     val shizukuStatus: StateFlow<ShizukuManager.Status> = _shizukuStatus.asStateFlow()
 
     private val _shizukuPermission = MutableStateFlow(false)
