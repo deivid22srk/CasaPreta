@@ -30,22 +30,22 @@ android {
         }
     }
     val keystoreBase64 = System.getenv("KEYSTORE_BASE64")
-    val keystorePassword = System.getenv("KEYSTORE_PASSWORD") ?: keystoreProperties.getProperty("KEYSTORE_PASSWORD")
-    val keyAlias = System.getenv("KEY_ALIAS") ?: keystoreProperties.getProperty("KEY_ALIAS")
-    val keyPassword = System.getenv("KEY_PASSWORD") ?: keystoreProperties.getProperty("KEY_PASSWORD")
+    val keystorePasswordEnv = System.getenv("KEYSTORE_PASSWORD") ?: keystoreProperties.getProperty("KEYSTORE_PASSWORD")
+    val keyAliasEnv = System.getenv("KEY_ALIAS") ?: keystoreProperties.getProperty("KEY_ALIAS")
+    val keyPasswordEnv = System.getenv("KEY_PASSWORD") ?: keystoreProperties.getProperty("KEY_PASSWORD")
 
     signingConfigs {
         create("release") {
             if (!keystoreBase64.isNullOrEmpty()) {
                 // CI mode: decode base64 keystore to a temp file
-                val decoded = android.util.Base64.decode(keystoreBase64, android.util.Base64.DEFAULT)
+                val decoded = java.util.Base64.getDecoder().decode(keystoreBase64)
                 val tmpFile = File(rootProject.buildDir, "tmp_keystore.jks")
                 tmpFile.parentFile?.mkdirs()
                 tmpFile.writeBytes(decoded)
                 storeFile = tmpFile
-                storePassword = keystorePassword
-                keyAlias = keyAlias
-                keyPassword = keyPassword
+                storePassword = keystorePasswordEnv
+                keyAlias = keyAliasEnv
+                keyPassword = keyPasswordEnv
             } else if (keystoreProperties.getProperty("KEYSTORE_PATH") != null) {
                 storeFile = File(keystoreProperties.getProperty("KEYSTORE_PATH"))
                 storePassword = keystoreProperties.getProperty("KEYSTORE_PASSWORD")
