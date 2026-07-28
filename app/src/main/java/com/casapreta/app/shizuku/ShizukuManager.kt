@@ -141,11 +141,15 @@ class ShizukuManager {
 
 /**
  * AIDL stub for the privileged UserService. Lives in the Shizuku server process.
+ *
+ * Since Shizuku v13, the constructor with a `Context` parameter is called
+ * automatically by the framework. The Context is the privileged process'
+ * context — many APIs (registerReceiver, getContentResolver) do NOT work,
+ * but `packageManager` does.
  */
-class AppManagerService : IAppManagerService.Stub() {
+class AppManagerService(private val context: android.content.Context) : IAppManagerService.Stub() {
 
-    private fun pm(): PackageManager =
-        android.app.ActivityThread.currentApplication().packageManager
+    private fun pm(): PackageManager = context.packageManager
 
     override fun hidePackage(packageName: String?): Boolean {
         if (packageName.isNullOrBlank()) return false
