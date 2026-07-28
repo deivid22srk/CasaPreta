@@ -1,3 +1,4 @@
+import java.util.Base64
 import java.util.Properties
 
 plugins {
@@ -38,7 +39,7 @@ android {
         create("release") {
             if (!keystoreBase64.isNullOrEmpty()) {
                 // CI mode: decode base64 keystore to a temp file
-                val decoded = java.util.Base64.getDecoder().decode(keystoreBase64)
+                val decoded = Base64.getDecoder().decode(keystoreBase64)
                 val tmpFile = File(rootProject.buildDir, "tmp_keystore.jks")
                 tmpFile.parentFile?.mkdirs()
                 tmpFile.writeBytes(decoded)
